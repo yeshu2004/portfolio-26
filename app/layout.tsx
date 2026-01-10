@@ -22,8 +22,9 @@ export default function RootLayout({
           {/* right nav */}
           <div className="flex items-center gap-5 uppercase">
             <Link href={""}>Blog</Link>
-            <Link href={""}>Contact</Link>
-            <Link href={""}>Linkedin</Link>
+            <Link href={"mailto:work.yeshuagarwal@gmail.com"}>Contact</Link>
+            <Link href={"https://www.linkedin.com/in/yeshu-agarwal-linkdedin/"}>Linkedin</Link>
+            <Link href={"https://github.com/yeshu2004"}>GitHub</Link>
           </div>
         </div>
         {children}
