@@ -10,3 +10,7 @@
   src: url("/fonts/GreatVibes-Regular.ttf");
 }
 
+@font-face {
+  font-family: "noto";
+  src: url("/fonts/Echolette Breeze.ttf");
+}
