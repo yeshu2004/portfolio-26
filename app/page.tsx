@@ -39,13 +39,13 @@ export default function Home() {
         className="
           absolute left-1/2 top-1/2 w-full
           -translate-x-1/2 -translate-y-1/2
-          text-white text-5xl md:text-5xl
+          text-white text-xl md:text-5xl
           pointer-events-none mix-blend-difference text-center leading-[1.1]
         "
       >
         <h1>HEY <span className="font-['offbit-dot'] font-bold">IT'S</span> ME<span className="font-['offbit-dot'] font-bold">!!</span></h1>
         <h1 className="">INDEPENDENT FULL<span className="font-['offbit-dot'] font-bold">-</span>STACK</h1>
-        <h1 className="font-['offbit-dot'] font-bold pt-2">☼ DEVELOPER ☂</h1>
+        <h1 className="font-['offbit-dot'] font-bold md:pt-2">☼ DEVELOPER ☂</h1>
         <h1>BUILDING THINGS THAT WORK</h1>
         <h1><span className="font-['offbit-dot'] font-bold">BASED ✈</span> SOMEWHERE WITH <span className="font-['offbit-dot'] font-bold">WIFI</span></h1>
         <h1>PORTFOLIO <span className="font-[offbit-dot] font-bold">©</span> 2026 <span className="font-[offbit-dot] font-bold">☮✨</span></h1>
