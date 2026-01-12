@@ -14,19 +14,22 @@ const items = [
     name: "WhisperLink",
     img: "https://cdn.pixabay.com/photo/2017/11/09/21/41/cat-2934720_960_720.jpg",
     role: "backend",
-    about: "WhisperLink is a thoughtfully designed anonymous Q&A platform that enables open, honest conversations while prioritizing safety and user comfort. The platform allows individuals to create personalized, shareable links through which others can submit questions anonymously.",
+    about:
+      "WhisperLink is a thoughtfully designed anonymous Q&A platform that enables open, honest conversations while prioritizing safety and user comfort. The platform allows individuals to create personalized, shareable links through which others can submit questions anonymously.",
   },
   {
     name: "Reflux",
     img: "https://cdn.pixabay.com/photo/2016/11/26/23/45/dog-1861839_960_720.jpg",
     role: "frontend",
-    about: "Designed and developed a modern web presence for the event that translates its creative energy into a clear, engaging, and cohesive digital experience. ReflUX is the flagship event of the UX Club at VIT Bhopal, celebrating the intersection of design, technology, and user experience.",
+    about:
+      "Designed and developed a modern web presence for the event that translates its creative energy into a clear, engaging, and cohesive digital experience. ReflUX is the flagship event of the UX Club at VIT Bhopal, celebrating the intersection of design, technology, and user experience.",
   },
   {
     name: "AI meeting Summarizer",
     img: "https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=500&auto=format",
     role: "fullstack",
-    about: "full-stack application that automatically generates structured meeting summaries from raw transcripts using AI, and allows users to edit and share via email",
+    about:
+      "full-stack application that automatically generates structured meeting summaries from raw transcripts using AI, and allows users to edit and share via email",
   },
   {
     name: "Load Balancer",
@@ -60,6 +63,29 @@ export default function Images() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  const rowVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  };
+
+const easeOutBezier: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const itemVariants = {
+  hidden: { y: 100 },
+  show: {
+    y: 0,
+    transition: {
+      duration: 1,
+      ease: easeOutBezier,
+    },
+  },
+};
+
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePos({ x: e.clientX, y: e.clientY });
@@ -87,8 +113,7 @@ export default function Images() {
   };
 
   return (
-    <div
-      className="h-[90vh] w-full flex flex-col font-['noto'] items-center py-5 relative overflow-hidden bg-zinc-950 text-white uppercase">
+    <div className="h-[90vh] w-full flex flex-col font-['noto'] items-center py-5 relative overflow-hidden bg-zinc-950 text-white uppercase">
       {hoveredIdx !== null && (
         <div
           className={`fixed z-50 pointer-events-none transition-opacity duration-300 ${
@@ -118,22 +143,65 @@ export default function Images() {
       )}
 
       <div className="w-full z-10">
+        <div className="flex items-center px-5 uppercase text-yellow-50 justify-between text-lg py-2">
+          <div className="flex items-center gap-10">
+            <h1>Number</h1>
+            <h1>Project</h1>
+          </div>
+          <h1>Category</h1>
+        </div>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="h-px w-full bg-white origin-left"
+        />
         {items.map((item, idx) => (
           <div key={idx} className="w-full">
-            <div
-              className="w-full cursor-pointer flex items-center justify-between px-5 py-3 mb-1 text-white transition-all duration-500  text-lg hover:bg-white hover:text-zinc-950 hover:px-7  "
+            {/* ROW */}
+            <motion.div
+              variants={rowVariants}
+              initial="hidden"
+              whileInView="show"
               onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-              onMouseEnter={() => handleMouseEnter(idx)}
-              onMouseLeave={handleMouseLeave}
+              viewport={{ once: true, margin: "-40px" }}
+              className="w-full cursor-pointer flex items-center justify-between px-5 py-2 text-lg hover:bg-white hover:text-zinc-950 hover:px-7 transition-all duration-500"
             >
               <div className="flex items-center gap-10">
-                <span>( {String(idx + 1).padStart(3, "0")} )</span>
-                <span className="font-semibold">{item.name}</span>
+                <div className="w-fit h-full overflow-hidden">
+                  <motion.div variants={itemVariants}>
+                    ( {String(idx + 1).padStart(3, "0")} )
+                  </motion.div>
+                </div>
+                <div className="w-fit h-full overflow-hidden">
+                  <motion.div variants={itemVariants} className="font-semibold">
+                    {item.name}
+                  </motion.div>
+                </div>
               </div>
 
-              <span className="font-semibold">{item.role}</span>
-            </div>
+              <div className="w-fit h-full overflow-hidden">
+                  <motion.div variants={itemVariants} className="font-semibold">
+                    {item.role}
+                  </motion.div>
+              </div>
+            </motion.div>
 
+            {/* 👇 UNDERLINE */}
+            <AnimatePresence>
+              {openIdx != idx && (
+                <motion.div
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  className="h-px w-full bg-white origin-left"
+                />
+              )}
+            </AnimatePresence>
+
+            {/* EXPAND CONTENT */}
             <AnimatePresence>
               {openIdx === idx && (
                 <motion.div
@@ -143,7 +211,7 @@ export default function Images() {
                   transition={{ duration: 0.5, ease: "easeInOut" }}
                   className="overflow-hidden bg-zinc-950 px-5 w-2/3"
                 >
-                  <div className="text-zinc-300 text-3xl font-[noto] uppercase font-bold">
+                  <div className="text-zinc-300 text-3xl font-bold uppercase">
                     {item.about}
                   </div>
                 </motion.div>
