@@ -1,9 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
+
+  const current = useRef<HTMLDivElement | null>(null);
+
+  const { scrollYProgress } = useScroll();
+  const opacityTrans = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   const [cols, setCols] = useState(0);
   const [rows, setRows] = useState(0);
@@ -22,7 +27,7 @@ export default function Hero() {
   if (!cols || !rows) return null;
 
   return (
-    <main className="h-screen w-full sticky top-0 bg-white overflow-hidden">
+    <main ref={current} className="h-screen w-full sticky top-0 bg-white overflow-hidden">
       {/* Grid */}
       <div
         className="grid h-full w-full"
@@ -49,7 +54,8 @@ export default function Hero() {
       </div>
 
       {/* center text */}
-      <div
+      <motion.div
+      style={{opacity: opacityTrans}}
         className="
           absolute left-1/2 top-1/2 w-full
           -translate-x-1/2 -translate-y-1/2
@@ -95,11 +101,12 @@ export default function Hero() {
 
         {/* giphy */}
         <div className="mt-20 absolute left-1/2 -translate-x-1/2 flex justify-center pointer-events-auto">
-          <div
+          <motion.div
             style={{
               width: 100,
               height: 100,
               position: "relative",
+              opacity: opacityTrans,
             }}
           >
             <iframe
@@ -112,9 +119,9 @@ export default function Hero() {
               allowFullScreen
               className="giphy-embed h-16 md:h-full"
             />
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
     </main>
   );
 }

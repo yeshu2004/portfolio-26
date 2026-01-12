@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { AnimatePresence, delay, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 const items = [
   {
@@ -57,7 +57,7 @@ const items = [
   },
 ];
 
-export default function Images() {
+export default function Projects() {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -67,12 +67,13 @@ export default function Images() {
     hidden: {},
     show: {
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.25,
       },
     },
   };
 
 const easeOutBezier: [number, number, number, number] = [0.16, 1, 0.3, 1];
+const easeCublic: [number, number, number, number] = [0.645, 0.045, 0.355, 1.0];
 
 const itemVariants = {
   hidden: { y: 100 },
@@ -113,7 +114,7 @@ const itemVariants = {
   };
 
   return (
-    <div className="h-[90vh] w-full flex flex-col font-['noto'] items-center py-5 relative overflow-hidden bg-zinc-950 text-white uppercase">
+    <div className="min-h-screen w-full flex flex-col font-['noto'] items-center py-5 pt-12 relative overflow-hidden bg-zinc-950 text-white uppercase">
       {hoveredIdx !== null && (
         <div
           className={`fixed z-50 pointer-events-none transition-opacity duration-300 ${
@@ -143,7 +144,7 @@ const itemVariants = {
       )}
 
       <div className="w-full z-10">
-        <div className="flex items-center px-5 uppercase text-yellow-50 justify-between text-lg py-2">
+        <div className="flex items-center px-5 uppercase text-zinc-400 justify-between text-lg py-2">
           <div className="flex items-center gap-10">
             <h1>Number</h1>
             <h1>Project</h1>
@@ -153,9 +154,9 @@ const itemVariants = {
         <motion.div
           initial={{ scaleX: 0 }}
           whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.9, ease: "easeOut" }}
-          className="h-px w-full bg-white origin-left"
+          // viewport={{ once: true }}
+          transition={{ duration: 1.2, ease: easeCublic }}
+          className="h-[0.08rem] w-full bg-white origin-left"
         />
         {items.map((item, idx) => (
           <div key={idx} className="w-full">
@@ -194,9 +195,9 @@ const itemVariants = {
                 <motion.div
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, ease: "easeOut" }}
-                  className="h-px w-full bg-white origin-left"
+                  // viewport={{ once: true }}
+                  transition={{ duration: 1.2, ease: easeCublic}}
+                  className="h-[0.08rem] w-full bg-white origin-left"
                 />
               )}
             </AnimatePresence>
