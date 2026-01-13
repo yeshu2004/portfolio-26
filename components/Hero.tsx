@@ -27,7 +27,7 @@ export default function Hero() {
   if (!cols || !rows) return null;
 
   return (
-    <main ref={current} className="h-screen w-full sticky top-0 bg-white overflow-hidden">
+    <main ref={current} className="h-[95vh] w-full sticky top-0 bg-white overflow-hidden">
       {/* Grid */}
       <div
         className="grid h-full w-full"

@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased relative`}>
-        <div className="top-0 left-0 fixed font-['offbit-dot'] uppercase md:text-sm  text-xs font-bold tracking-wide md:px-5 px-5 pt-4 z-50 bg-zinc-950 text-white flex items-center justify-between w-full">
+        <div className="top-0 left-0 sticky font-['offbit-dot'] uppercase md:text-sm  text-xs font-bold tracking-wide md:px-5 px-5 pt-4 z-50 bg-zinc-950 text-white flex items-center justify-between w-full h-[5vh]">
           {/* left navbar */}
           <Link href={"/"} className="md:text-base text-sm">Yeshu Agarwal</Link>
           {/* right nav */}
