@@ -21,7 +21,7 @@ export default function RootLayout({
           <Link href={"/"} className="md:text-base text-sm">Yeshu Agarwal</Link>
           {/* right nav */}
           <div className="flex items-center md:gap-5 gap-3 uppercase">
-            <Link href={"#"}>Blog</Link>
+            <Link href={"https://medium.com/@work.yeshuagarwal"}>Blog</Link>
             <Link href={"mailto:work.yeshuagarwal@gmail.com"}>Contact</Link>
             <Link href={"https://www.linkedin.com/in/yeshu-agarwal-linkdedin/"}>Linkedin</Link>
             <Link href={"https://github.com/yeshu2004"} className="hidden md:flex">GitHub</Link>
