@@ -4,7 +4,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
-
   const current = useRef<HTMLDivElement | null>(null);
 
   const { scrollYProgress } = useScroll();
@@ -27,7 +26,10 @@ export default function Hero() {
   if (!cols || !rows) return null;
 
   return (
-    <main ref={current} className="h-[95vh] w-full sticky top-0 bg-white overflow-hidden">
+    <main
+      ref={current}
+      className="h-[95vh] w-full sticky top-0 bg-white overflow-hidden"
+    >
       {/* Grid */}
       <div
         className="grid h-full w-full"
@@ -36,7 +38,7 @@ export default function Hero() {
           gridTemplateRows: `repeat(${rows}, 1fr)`,
         }}
       >
-        {Array.from({ length: cols*rows }).map((_, i) => (
+        {Array.from({ length: cols * rows }).map((_, i) => (
           <motion.div
             key={i}
             className="bg-zinc-950"
@@ -55,7 +57,7 @@ export default function Hero() {
 
       {/* center text */}
       <motion.div
-      style={{opacity: opacityTrans}}
+        style={{ opacity: opacityTrans }}
         className="
           absolute left-1/2 top-1/2 w-full
           -translate-x-1/2 -translate-y-1/2
@@ -109,15 +111,11 @@ export default function Hero() {
               opacity: opacityTrans,
             }}
           >
-            <iframe
-              src="https://giphy.com/embed/UQ1EI1ML2ABQdbebup"
-              width="100%"
-              height="100%"
-              loading="lazy"
-              style={{ position: "absolute" }}
-              frameBorder="0"
-              allowFullScreen
-              className="giphy-embed h-16 md:h-full"
+            <motion.img
+              src="/cat.gif"
+              alt="cat"
+              className="h-16 md:h-full"
+              style={{ opacity: opacityTrans }}
             />
           </motion.div>
         </div>
